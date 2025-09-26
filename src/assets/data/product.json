@@ -1,0 +1,122 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Курбургер",
+      "description": "Бургер с сочной куриной котлетой и беконом",
+      "price": 450,
+      "category": "Бургеры",
+      "image": "chickenBaconBurger.png",
+      "calories": 500,
+      "cookingTime": "10-15 мин",
+      "sizes": ["S", "M", "L"]
+    },
+    {
+      "id": 2,
+      "name": "Бифбургер",
+      "description": "Бургер с сочной говяжьей котлетой",
+      "price": 550,
+      "category": "Бургеры",
+      "image": "beefBurger.png",
+      "calories": 600,
+      "cookingTime": "5-10 мин",
+      "sizes": ["S", "M", "L"]
+    },
+    {
+      "id": 3,
+      "name": "Обжорбургер",
+      "description": "Бургер с сочной говяжьей котлетой и беконом",
+      "price": 600,
+      "category": "Бургеры",
+      "image": "beefBaconBurger.png",
+      "calories": 650,
+      "cookingTime": "10-15 мин",
+      "sizes": ["S", "M", "L"]
+    },
+    {
+      "id": 4,
+      "name": "Чизбургер",
+      "description": "Классический чизбургер",
+      "price": 350,
+      "category": "Бургеры",
+      "image": "cheeseBurger.png",
+      "calories": 400,
+      "cookingTime": "5-10 мин",
+      "sizes": ["S", "M", "L"]
+    },
+    {
+      "id": 5,
+      "name": "Пицца 4 сыра",
+      "description": "Пицца из четырёх видов сыра: моцарелла, пармезан, эмменталь, горгонзола",
+      "price": 500,
+      "category": "Пицца",
+      "image": "pizzaCheese.png",
+      "calories": 500,
+      "cookingTime": "5-10 мин",
+      "sizes": ["S", "M", "L"]
+    },
+    {
+      "id": 6,
+      "name": "Пицца Халапеньо",
+      "description": "Пицца с итальянским салями, моцареллой и острым перцем халапеньо",
+      "price": 550,
+      "category": "Пицца",
+      "image": "pizzaHal.png",
+      "calories": 500,
+      "cookingTime": "5-10 мин",
+      "sizes": ["S", "M", "L"]
+    },
+    {
+      "id": 7,
+      "name": "Пицца Грибная",
+      "description": "Пицца с шампиньонами, моцареллой, болгарским перцем и оливковым маслом",
+      "price": 550,
+      "category": "Пицца",
+      "image": "pizzaMushrooms.jpg",
+      "calories": 500,
+      "cookingTime": "5-10 мин",
+      "sizes": ["S", "M", "L"]
+    },
+    {
+      "id": 8,
+      "name": "Ролл Куриный",
+      "description": "Ролл с курицей, овощами, сыром и традиционным соусом",
+      "price": 300,
+      "category": "Роллы",
+      "image": "chikenRoll.png",
+      "calories": 350,
+      "cookingTime": "5-10 мин",
+      "sizes": ["S", "L"]
+    },
+    {
+      "id": 9,
+      "name": "Ролл Овощной",
+      "description": "Ролл с овощами, сыром и традиционным соусом",
+      "price": 250,
+      "category": "Роллы",
+      "image": "vegeterianRoll.png",
+      "calories": 350,
+      "cookingTime": "5-10 мин",
+      "sizes": ["S", "L"]
+    },
+    {
+      "id": 10,
+      "name": "Мексиканский Тако",
+      "description": "Тако с мясом, томатами, сыром, листьями салата и сальсой на кукурузной тортилье",
+      "price": 300,
+      "category": "Роллы",
+      "image": "mexicanTaco.png",
+      "calories": 350,
+      "cookingTime": "5-10 мин"
+    },
+     {
+      "id": 11,
+      "name": "Кола 0,5л",
+      "description": "Кока-кола",
+      "price": 100,
+      "category": "Напитки",
+      "image": "cocaCola.png"
+    }
+ ],
+ "categories": ["Бургеры", "Пицца", "Напитки"]
+}
