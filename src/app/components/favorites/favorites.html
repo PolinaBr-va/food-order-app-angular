@@ -1,0 +1,32 @@
+<div class="favorites-container">
+  <h2>Избранное</h2>
+
+  <div class="favorites-grid" *ngIf="favorites.length > 0; else emptyState">
+    <div class="favorite-item" *ngFor="let product of favorites">
+      <div class="item-image">
+        <img [src]="imageService.getProductImagePath(product)" [alt]="product.name" />
+        <button class="remove-btn" (click)="removeFromFavorites(product)">
+          <span class="material-icons">Удалить</span>
+        </button>
+      </div>
+      <div class="item-info">
+        <h3>{{ product.name }}</h3>
+        <p class="description">{{ product.description | slice : 0 : 80 }}...</p>
+        <p class="price">{{ product.price }} рублей</p>
+        <div class="item-actions">
+          <a [routerLink]="['/product', product.id]"
+            >Показать детали</a
+          >
+          <button class="add-to-cart" (click)="addToCart(product)">Добавить в корзину</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <h3>Товары отсутсвуют в избранном</h3>
+      <p>Начните добавлять свои любимые товары, нажав на значок сердечка на любом товаре</p>
+      <a routerLink="/home" class="browse-btn">Посмотреть меню</a>
+    </div>
+  </ng-template>
+</div>

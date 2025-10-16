@@ -1,0 +1,37 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="onClose()">
+      <span class="material-icons">Закрыть</span>
+    </button>
+
+    <div class="succes-icon">
+      <span class="material-icons">check_circle</span>
+    </div>
+
+    <h2>Заказ оформлен!</h2>
+
+    <p class="success-message">
+      Ваш заказ был успешно оформлен. Вскоре вы получите электронное письмо с подтверждением заказа.
+    </p>
+
+    <div class="order-details">
+      <div class="detail-item">
+        <span class="label">Номер заказа:</span>
+        <span class="value">#{{ orderId }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Время доставки заказа:</span>
+        <span class="value">30-40 минут</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Сумма заказа:</span>
+        <span class="value">{{ totalAmount }} рублей</span>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="track-order-btn" (click)="onTrackOrder()">Отследить Ваш заказ</button>
+      <a routerLink="/home" class="home-page-btn" (click)="onClose()">На главную</a>
+    </div>
+  </div>
+</div>
