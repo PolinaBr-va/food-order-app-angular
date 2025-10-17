@@ -38,7 +38,7 @@ export class ProfileComponent  implements OnInit{
     if (this.profileForm.valid) {
        // Сохранение профиля в localStorage
        localStorage.setItem('userProfile', JSON.stringify(this.profileForm.value));
-       alert('Данные профиля успешно сохранены!');
+       alert('Данные профиля успешно сохранены!!!');
     }
   }
 
