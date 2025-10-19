@@ -154,7 +154,7 @@
 }
 
 .add-to-cart-btn:hover {
-  background: #815bad;
+  background: #51396d;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px #51396d;
 }
@@ -215,7 +215,6 @@
   font-weight: 600;
   color: #333;
   font-size: 17px;
-
 }
 
 .not-found {
@@ -251,27 +250,4 @@
   padding: 3rem 2rem;
   color: #666;
   font-size: 1.1rem;
-}
-
-/* Дополнительные классы для размеров изображений */
-.product-image-small {
-  height: 300px;
-}
-
-.product-image-medium {
-  height: 400px;
-}
-
-.product-image-large {
-  height: 500px;
-}
-
-.product-image-contain img {
-  object-fit: contain;
-  background: #f8f9fa;
-  padding: 1rem;
-}
-
-.product-image-cover img {
-  object-fit: cover;
 }
