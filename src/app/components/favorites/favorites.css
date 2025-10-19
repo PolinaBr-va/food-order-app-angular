@@ -21,7 +21,8 @@
 
 .favorite-item {
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
   background: #fff;
@@ -38,7 +39,9 @@
   position: relative;
   width: 100%;
   height: 210px;
+  margin-bottom: 12px;
   overflow: hidden;
+  border-radius: 6px;
 }
 
 .item-image img {
@@ -117,10 +120,28 @@
   margin-top: 15px;
 }
 
+.item-actions a {
+  padding: 4px 8px;
+  padding-top: 10px;
+  color: #090d11;
+  text-decoration: none;
+  border: 1px solid #815bad;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  flex: 1;
+}
+
+.item-actions a:hover {
+  background: #815bad;
+  color: #ffffff;
+}
+
 .veiw-details {
-  padding: 15px;
+  padding: 20px;
   border: 2px solid #815bad;
-  background: 815bad;
   color: #815bad;
   border-radius: 6px;
   cursor: pointer;
@@ -128,19 +149,19 @@
   text-align: center;
   transition: all 0.3s ease;
   font-size: 15px;
-} 
+}
 
 .view-details:hover {
   background: #815bad;
   color: white;
   transform: translateY(-1px);
-} 
+}
 
 .add-to-cart {
   flex: 1;
-  padding: 15px;
-  border: none;
-  background: #2bad7c;
+  padding: 4px 8px;
+  border: 2px solid #458ba9;
+  background: #55add2;
   color: white;
   border-radius: 6px;
   cursor: pointer;
@@ -150,7 +171,8 @@
 }
 
 .add-to-cart:hover {
-  background: #2bad7c;
+  border: 2px solid #458ba9;
+  background: #458ba9;
   transform: translateY(-1px);
 }
 
@@ -195,5 +217,3 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px #815bad;
 }
-
-
