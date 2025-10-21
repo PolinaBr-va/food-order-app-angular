@@ -1,51 +1,48 @@
 <div *ngIf="product" class="product-detail">
   <div class="product-image">
-    <img [src]="imageService.getProductImagePath(product)" [alt]="product.name">
+    <img [src]="imageService.getProductImagePath(product)" [alt]="product.name" />
   </div>
   <div class="product-info">
     <div></div>
     <h2>{{ product.name }}</h2>
-  <p class="product-description">{{ product.description }}</p>
-  <p class="product-price">{{ product.price }} рублей</p>
+    <p class="product-description">{{ product.description }}</p>
+    <p class="product-price">{{ product.price }} рублей</p>
 
-  <div *ngIf="product.sizes && product.sizes.length" class="size-selector">
-    <label>Размер:</label>
-    <select [(ngModel)]="selectedSize">
-        <option *ngFor="let size of product.sizes" [value]="size"> 
-            {{ size }} 
+    <div *ngIf="product.sizes && product.sizes.length" class="size-selector">
+      <label>Размер:</label>
+      <select [(ngModel)]="selectedSize">
+        <option *ngFor="let size of product.sizes" [value]="size">
+          {{ size }}
         </option>
-    </select>
-  </div>
-  <div class="quantity-selector">
-    <label>Количество:</label>
-    <div class="quantity-controls">
-      <button (click)="decreaseQuantity()">-</button>
-      <span>{{quantity}}</span>
-      <button (click)="increaseQuantity()">+</button>
+      </select>
     </div>
-  </div>
-
-  <div class="product-actions">
-    <button class="add-to-cart-btn" (click)="onAddToCart()">Добавить в корзину</button>
-    <button class="favorite-btn"
-    (click)="toggleFavorite()"
-    [class.favorite]="isFavorite">
-    {{isFavorite ? '♥' : '♡'}}
-  </button>
-  </div>
-
-  <div class="product-detail">
-    <div class="detail-item" *ngIf="product.calories">
-      <span class="label">Калории:</span>
-      <span class="value">{{product.calories}} ккал</span>
+    <div class="quantity-selector">
+      <label>Количество:</label>
+      <div class="quantity-controls">
+        <button (click)="decreaseQuantity()">-</button>
+        <span>{{ quantity }}</span>
+        <button (click)="increaseQuantity()">+</button>
+      </div>
     </div>
 
-    <div class="detail-item" *ngIf="product.cookingTime">
-      <span class="label">Время приготовления:</span>
-      <span class="value">{{ product.cookingTime }}</span>
-
+    <div class="product-actions">
+      <button class="add-to-cart-btn" (click)="onAddToCart()">Добавить в корзину</button>
+      <button class="favorite-btn" (click)="toggleFavorite()" [class.favorite]="isFavorite">
+        {{ isFavorite ? '♥' : '♡' }}
+      </button>
     </div>
-  </div>
+
+    <div class="product-detail">
+      <div class="detail-item" *ngIf="product.calories">
+        <span class="label">Калории:</span>
+        <span class="value">{{ product.calories }} ккал</span>
+      </div>
+
+      <div class="detail-item" *ngIf="product.cookingTime">
+        <span class="label">Время приготовления:</span>
+        <span class="value">{{ product.cookingTime }}</span>
+      </div>
+    </div>
   </div>
 </div>
 

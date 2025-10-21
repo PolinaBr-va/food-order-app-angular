@@ -109,7 +109,7 @@
       "calories": 350,
       "cookingTime": "5-10 мин"
     },
-     {
+    {
       "id": 11,
       "name": "Кола 0,5л",
       "description": "Кока-кола",
@@ -117,6 +117,6 @@
       "category": "Напитки",
       "image": "cocaCola.png"
     }
- ],
- "categories": ["Бургеры", "Пицца", "Напитки"]
+  ],
+  "categories": ["Бургеры", "Пицца", "Напитки"]
 }

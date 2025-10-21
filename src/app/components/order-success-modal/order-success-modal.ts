@@ -7,24 +7,37 @@ import { CommonModule } from '@angular/common';
   selector: 'app-order-success-modal',
   imports: [RouterLink, CommonModule],
   templateUrl: './order-success-modal.html',
-  styleUrl: './order-success-modal.css'
+  styleUrl: './order-success-modal.css',
 })
 export class OrderSuccessModalComponent {
   @Output() close = new EventEmitter<void>();
-  orderId: string;
-  totalAmount: number;
+  orderId: string = '';
+  totalAmount: number = 0;
 
-  constructor(private cartService: CartService) {
-    // Генерация ID заказа
-    this.orderId = Math.random().toString(36).substring(2, 9).toUpperCase();
-    this.totalAmount = this.cartService.getTotalPrice();
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.getLastOrder();
   }
 
-  onClose() {
+  private getLastOrder(): void {
+    try {
+      const orders = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+      if (orders.length > 0) {
+        const lastOrder = orders[0];
+        this.orderId = lastOrder.id;
+        this.totalAmount = lastOrder.total;
+      }
+    } catch (error) {
+      console.error('Ошибка при получении последнего заказа:', error);
+    }
+  }
+
+  onClose(): void {
     this.close.emit();
   }
 
-  onTrackOrder() {
+  onTrackOrder(): void {
     alert('Здесь будет реализовано отслеживание заказов');
     this.onClose();
   }

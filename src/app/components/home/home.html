@@ -1,46 +1,51 @@
 <div class="home">
-    <h1>Самое время заказать еду!</h1>
+  <h1>Самое время заказать еду!</h1>
 
-    <div class="search-bar">
-        <input 
-        type="text" 
-        [(ngModel)]="searchTerm" 
-        placeholder="Найти самый вкусный бургер"
-        (input)="onSearchChange()">
-    </div>
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Найти самый вкусный бургер"
+      (input)="onSearchChange()"
+    />
+  </div>
 
-    <div class="categories">
-        <button
-        *ngFor="let category of allCategories"
-        (click)="selectCategory(category)"
-        [class.active]="selectedCategory === category">
-        {{ category }}
+  <div class="categories">
+    <button
+      *ngFor="let category of allCategories"
+      (click)="selectCategory(category)"
+      [class.active]="selectedCategory === category"
+    >
+      {{ category }}
     </button>
     <button (click)="clearFilters()">Очистить фильтр</button>
-    </div>
+  </div>
 
-    <div class="products-grid">
-        <div *ngFor="let product of filteredProducts" class="product-card">
-            <div class="product-image product-image-medium">
-                <img [src]="imageService.getProductImagePath(product)" 
-                [alt]="product.name"
-                class="product-img">
-                <button
-            class="favorite-btn"
-            (click)="toggleFavorite(product)"
-            [class.favorite]="isFavorite(product.id)">
-             ♥
-            </button>
-            </div>
-            <div class="product-info">
-                 <h3>{{ product.name }}</h3>
-            <p class="product-description">{{ product.description }}</p>
-            <p class="product-price">Цена: {{ product.price }} рублей</p>
-            <div class="product-actions">
-                <a [routerLink]="['/product', product.id]" (click)="viewDetails(product)">Показать детали</a>
-                <button (click)="addToCart(product)">В корзину</button>
-            </div>
-            </div>
+  <div class="products-grid">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <div class="product-image product-image-medium">
+        <img
+          [src]="imageService.getProductImagePath(product)"
+          [alt]="product.name"
+          class="product-img"
+        />
+        <button
+          class="favorite-btn"
+          (click)="toggleFavorite(product)"
+          [class.favorite]="isFavorite(product.id)"
+        >
+          ♥
+        </button>
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <p class="product-price">Цена: {{ product.price }} рублей</p>
+        <div class="product-actions">
+          <a [routerLink]="['/product', product.id]">Показать детали</a>
+          <button (click)="addToCart(product)">В корзину</button>
         </div>
+      </div>
     </div>
+  </div>
 </div>

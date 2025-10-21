@@ -2,48 +2,47 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
-import { AsyncPipe } from '@angular/common';
+import { Order, OrderItem, OrderStatus } from '../../models/order';
+import { userProfile } from '../../models/user';
 
 @Component({
   selector: 'app-profile',
   imports: [CommonModule, ReactiveFormsModule, NgIf, NgFor],
   templateUrl: './profile.html',
-  styleUrl: './profile.css'
+  styleUrl: './profile.css',
 })
-export class ProfileComponent  implements OnInit{
+export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
-  orderHistory: any[] = [];
+  orderHistory: Order[] = [];
 
-  constructor(private fb: FormBuilder, private cartSerice: CartService) {
+  constructor(private fb: FormBuilder, private cartService: CartService) {
     this.profileForm = this.fb.group({
-      fullName: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      phone: ['', Validators.required],
-      address: ['', Validators.required]
+      fullName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]],
     });
   }
 
-  ngOnInit() {
-    // Загрузка данных профиля из localStorage
+  ngOnInit(): void {
     const savedProfile = localStorage.getItem('userProfile');
     if (savedProfile) {
       this.profileForm.patchValue(JSON.parse(savedProfile));
     }
-
-     // Загрузка истории заказов
-     this.orderHistory = this.loadOrderHistory();
+    this.orderHistory = this.loadOrderHistory();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.profileForm.valid) {
-       // Сохранение профиля в localStorage
-       localStorage.setItem('userProfile', JSON.stringify(this.profileForm.value));
-       alert('Данные профиля успешно сохранены!');
+      const formData = this.profileForm.value;
+      localStorage.setItem('userProfile', JSON.stringify(formData));
+      alert('Данные профиля успешно сохранены!');
+    } else {
+      alert('Пожалуйста, заполните все обязательные поля правильно.');
     }
   }
 
-  onCancel() {
-    // Восстановление исходных значений
+  onCancel(): void {
     const savedProfile = localStorage.getItem('userProfile');
     if (savedProfile) {
       this.profileForm.patchValue(JSON.parse(savedProfile));
@@ -52,17 +51,83 @@ export class ProfileComponent  implements OnInit{
     }
   }
 
-  loadOrderHistory() {
-    // Загрузка истории заказов из localStorage
-    const orders = localStorage.getItem('orderHostory');
-    return orders ? JSON.parse(orders) : [];
+  private loadOrderHistory(): Order[] {
+    const orders = localStorage.getItem('orderHistory');
+    if (orders) {
+      try {
+        const parsedOrders = JSON.parse(orders);
+        this.orderHistory = parsedOrders.map((order: any) => ({
+          ...order,
+          date: new Date(order.date),
+        }));
+        return this.orderHistory;
+      } catch (error) {
+        console.error('Ошибка парсинга:', error);
+        this.orderHistory = [];
+        return [];
+      }
+    } else {
+      this.orderHistory = [];
+      return [];
+    }
   }
 
-  reorder(order: any) {
-    // Добавление товаров из заказа в корзину
-    order.items.forEach((item: any) => {
-      this.cartSerice.addToCart(item.product, item.quantity, item.selectedSize);
+  reorder(order: Order): void {
+    order.items.forEach((item: OrderItem) => {
+      this.cartService.addToCart(item.product, item.quantity, item.selectedSize);
     });
-    alert('Позиция добавлена в вашу корзину!');
+    alert('Заказ добавлен в вашу корзину!');
+  }
+
+  getStatusText(status: OrderStatus): string {
+    const statusMap: Record<OrderStatus, string> = {
+      'В обработке': 'В обработке',
+      Подтверждённый: 'Подтверждён',
+      Приготовление: 'Приготовление',
+      'Ожидает доставку': 'Ожидает доставку',
+      Доставляется: 'Доставляется',
+      Доставлено: 'Доставлено',
+      Отменён: 'Отменён',
+    };
+    return statusMap[status] || status;
+  }
+
+  getStatusColor(status: OrderStatus): string {
+    const colorMap: Record<OrderStatus, string> = {
+      'В обработке': '#f1be22ff',
+      Подтверждённый: '#17a2b8',
+      Приготовление: '#fd7e14',
+      'Ожидает доставку': '#20c997',
+      Доставляется: '#007bff',
+      Доставлено: '#28a745',
+      Отменён: '#dc3545',
+    };
+    return colorMap[status] || '#6c757d';
+  }
+
+  getTotalItems(order: Order): number {
+    return order.items.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  viewOrderDetails(order: Order) {
+    alert(
+      `Детали заказа #${order.id}\nСтатус: ${this.getStatusText(order.status)}\nСумма: ${
+        order.total
+      } руб.\nТоваров: ${this.getTotalItems(order)} шт.`
+    );
+  }
+
+  cancelOrder(order: Order) {
+    if (order.status === 'В обработке' || order.status === 'Подтверждённый') {
+      order.status = 'Отменён';
+      this.saveOrderHistory();
+      alert('Заказ отменен');
+    } else {
+      alert('Невозможно отменить заказ в текущем статусе');
+    }
+  }
+
+  private saveOrderHistory(): void {
+    localStorage.setItem('orderHistory', JSON.stringify(this.orderHistory));
   }
 }

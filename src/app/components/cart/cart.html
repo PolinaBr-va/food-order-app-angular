@@ -1,45 +1,41 @@
 <div class="cart-container">
-    <h2>Корзина</h2>
+  <h2>Корзина</h2>
 
-    <div *ngIf="cartItems.length === 0" class="empty-cart">
-        <p>Ваша корзина пуста</p> 
-        <a routerLink="/home">Вернуться к покупкам</a>
-    </div>
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Ваша корзина пуста</p>
+    <a routerLink="/home">Вернуться к покупкам</a>
+  </div>
 
-    <div *ngIf="cartItems.length > 0" class="cart-content">
-        <div class="cart-items">
-            <div *ngFor="let item of cartItems" class="cart-item">
-                <div class="item-image">
-                    <img [src]="imageService.getProductImagePath(item.product)" 
-                    [alt]="item.product.name"
-                    class="product-img">
-                </div>
-
-                <div class="item-details">
-                    <h3>{{ item.product.name }}</h3>
-                    <p *ngIf="item.selectedSize" class="product-size">Размер: {{item.selectedSize}}</p>
-                    <p class="product-price"> {{item.product.price * item.quantity | currency: 'Р'}}</p>
-                </div>
-
-                <div class="quantity-controls">
-                    <button (click)="onUpdateQuantity(item, item.quantity -1)">-</button>
-                    <span>{{ item.quantity }}</span>
-                    <button (click)="onUpdateQuantity(item, item.quantity +1)">+</button>
-                </div>
-
-                <button class="remove-btn" (click)="onRemoveItem(item)">
-                    Удалить
-                </button>
-                
-                
-            </div>
+  <div *ngIf="cartItems.length > 0" class="cart-content">
+    <div class="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <div class="item-image">
+          <img
+            [src]="imageService.getProductImagePath(item.product)"
+            [alt]="item.product.name"
+            class="product-img"
+          />
         </div>
 
-        <div class="cart-summary">
-            <h3>Итого: {{ total | currency: ' Р' }}</h3>
-            <button class="checkout-btn" (click)="onCheckout()">
-                Оформить заказ
-            </button>
+        <div class="item-details">
+          <h3>{{ item.product.name }}</h3>
+          <p *ngIf="item.selectedSize" class="product-size">Размер: {{ item.selectedSize }}</p>
+          <p class="product-price">{{ item.product.price * item.quantity | currency : 'Р' }}</p>
         </div>
+
+        <div class="quantity-controls">
+          <button (click)="onUpdateQuantity(item, item.quantity - 1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="onUpdateQuantity(item, item.quantity + 1)">+</button>
+        </div>
+
+        <button class="remove-btn" (click)="onRemoveItem(item)">Удалить</button>
+      </div>
     </div>
+
+    <div class="cart-summary">
+      <h3>Итого: {{ total | currency : ' Р' }}</h3>
+      <button class="checkout-btn" (click)="onCheckout()">Оформить заказ</button>
+    </div>
+  </div>
 </div>

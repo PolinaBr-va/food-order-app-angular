@@ -1,68 +1,74 @@
 <div class="app-container">
-    <!-- Прогресс-бар -->
-     <div class="progress-container" *ngIf="showProgressBar">
-        <div class="progress-bar">
-            <div class="progress-step" [class.active]="currentStep >= 1"
-                [class.completed]="currentStep >1">
-                <span class="step-number">1</span>
-                <span class="step-label">Выбор товара</span>
-            </div>
-            <div class="progress-step" [class.active]="currentStep >= 2"
-                [class.completed]="currentStep >2">
-                <span class="step-number">2</span>
-                <span class="step-label">Корзина</span>
-            </div>
-            <div class="progress-step" [class.active]="currentStep >= 3"
-                [class.completed]="currentStep >3">
-                <span class="step-number">3</span>
-                <span class="step-label">Заказ оформлен</span>
-            </div>
-        </div>
-     </div>
+  <!-- Прогресс-бар -->
+  <div class="progress-container" *ngIf="showProgressBar">
+    <div class="progress-bar">
+      <div
+        class="progress-step"
+        [class.active]="currentStep >= 1"
+        [class.completed]="currentStep > 1"
+      >
+        <span class="step-number">1</span>
+        <span class="step-label">Выбор товара</span>
+      </div>
+      <div
+        class="progress-step"
+        [class.active]="currentStep >= 2"
+        [class.completed]="currentStep > 2"
+      >
+        <span class="step-number">2</span>
+        <span class="step-label">Корзина</span>
+      </div>
+      <div
+        class="progress-step"
+        [class.active]="currentStep === 3"
+        [class.completed]="currentStep === 3"
+      >
+        <span class="step-number">3</span>
+        <span class="step-label">Заказ оформлен</span>
+      </div>
+    </div>
+  </div>
 
-    <!-- Навигация -->
-     <nav class="nav">
-        <div class="nav-container">
-            <a routerLink="/home" class="nav-logo">Доставка еды</a>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a routerLink="/home" routerLinkActive="active" class="nav-link">
-                        <span class="material-icons">home</span>
-                        Домой
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/favorites" routerLinkActive="active" class="nav-link">
-                        <span class="material-icons">favorite</span>
-                        Избранное
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/profile" routerLinkActive="active" class="nav-link">
-                        <span class="material-icons">person</span>
-                        Профиль
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/cart" routerLinkActive="active" class="nav-link">
-                        <span class="material-icons">shopping_cart</span>
-                        Корзина
-                        <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
-                    </a>
-                </li> 
-            </ul>
-        </div>
-     </nav>
+  <!-- Навигация -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a routerLink="/home" class="nav-logo">Доставка еды</a>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a routerLink="/home" routerLinkActive="active" class="nav-link">
+            <span class="material-icons">home</span>
+            Домой
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/favorites" routerLinkActive="active" class="nav-link">
+            <span class="material-icons">favorite</span>
+            Избранное
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/profile" routerLinkActive="active" class="nav-link">
+            <span class="material-icons">person</span>
+            Профиль
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cart" routerLinkActive="active" class="nav-link">
+            <span class="material-icons">shopping_cart</span>
+            Корзина
+            <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Основной контент -->
-     <main class="main-content">
-      <router-outlet></router-outlet>
-     </main>
+  <!-- Основной контент -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
 
-    <!-- Модальное окно успешного заказа -->
-     <app-order-success-modal
-     *ngIf="showOrderSuccesModal"
-     (close)="showOrderSuccesModal = false">
-     </app-order-success-modal>
-
+  <!-- Модальное окно успешного заказа -->
+  <app-order-success-modal *ngIf="showOrderSuccesModal" (close)="closeOrderSuccessModal()">
+  </app-order-success-modal>
 </div>
