@@ -11,18 +11,17 @@
   </div>
 
   <div class="categories">
-    <button
-      *ngFor="let category of allCategories"
-      (click)="selectCategory(category)"
-      [class.active]="selectedCategory === category"
-    >
+    @for (category of allCategories; track category) {
+    <button (click)="selectCategory(category)" [class.active]="selectedCategory === category">
       {{ category }}
     </button>
     <button (click)="clearFilters()">Очистить фильтр</button>
+    }
   </div>
 
   <div class="products-grid">
-    <div *ngFor="let product of filteredProducts" class="product-card">
+    @for (product of filteredProducts; track product.id) {
+    <div class="product-card">
       <div class="product-image product-image-medium">
         <img
           [src]="imageService.getProductImagePath(product)"
@@ -47,5 +46,6 @@
         </div>
       </div>
     </div>
+    }
   </div>
 </div>
