@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Product, ProductsResponse } from '../models/product';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, shareReplay } from 'rxjs';
@@ -10,7 +10,9 @@ export class ProductService {
   private productsUrls = 'assets/data/product.json';
   private cachedProducts$: Observable<ProductsResponse> | null = null;
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient)
+
+  constructor() {}
 
   private getProductsData(): Observable<ProductsResponse> {
     if (!this.cachedProducts$) {

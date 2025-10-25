@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product';
 import { CartService } from '../../services/cart';
@@ -25,13 +25,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private cartService: CartService,
-    private favoriteService: FavoriteService,
-    public imageService: ImageService
-  ) {}
+  private route = inject(ActivatedRoute);
+  private productService = inject(ProductService);
+  private cartService = inject(CartService);
+  private favoriteService = inject(FavoriteService);
+  public imageService = inject(ImageService);
+
+  constructor() {}
 
   ngOnInit(): void {
     const productId = Number(this.route.snapshot.paramMap.get('id'));

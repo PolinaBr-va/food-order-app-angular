@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product';
 import { FavoriteService } from '../../services/favorite';
@@ -26,12 +26,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(
-    private productService: ProductService,
-    private favoriteService: FavoriteService,
-    private cartService: CartService,
-    public imageService: ImageService
-  ) {}
+  private productService = inject(ProductService);
+  private favoriteService = inject(FavoriteService);
+  private cartService = inject(CartService);
+  public imageService = inject(ImageService);
+
+  constructor() {}
 
   ngOnInit() {
     const productsSub = this.productService.getProducts().subscribe(

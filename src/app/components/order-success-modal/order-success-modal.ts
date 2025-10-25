@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CartService } from '../../services/cart';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -13,8 +13,8 @@ export class OrderSuccessModalComponent {
   @Output() close = new EventEmitter<void>();
   orderId: string = '';
   totalAmount: number = 0;
-
-  constructor(private cartService: CartService) {}
+  
+  constructor() {}
 
   ngOnInit(): void {
     this.getLastOrder();

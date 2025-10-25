@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart';
 import { CommonModule, NgIf, NgFor } from '@angular/common';
@@ -15,7 +15,10 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   orderHistory: Order[] = [];
 
-  constructor(private fb: FormBuilder, private cartService: CartService) {
+  private fb = inject(FormBuilder);
+  private cartService = inject(CartService);
+  
+  constructor() {
     this.profileForm = this.fb.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
