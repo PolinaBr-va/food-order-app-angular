@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart';
-import { CommonModule, NgIf, NgFor } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { Order, OrderItem, OrderStatus } from '../../models/order';
 import { userProfile } from '../../models/user';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, ReactiveFormsModule, NgIf, NgFor],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })

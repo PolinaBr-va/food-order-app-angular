@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { FavoriteService } from '../../services/favorite';
 import { CartService } from '../../services/cart';
-import { NgIf, NgFor, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ImageService } from '../../services/image';
 
 @Component({
   selector: 'app-favorites',
-  imports: [NgIf, CommonModule, NgFor, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './favorites.html',
   styleUrl: './favorites.css',
 })

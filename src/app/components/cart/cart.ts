@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart';
-import { NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { RouterLink } from '@angular/router';
 import { ImageService } from '../../services/image';
@@ -9,9 +8,10 @@ import { CartItem } from '../../models/product';
 import { Order, OrderItem } from '../../models/order';
 import { userProfile } from '../../models/user';
 
+
 @Component({
   selector: 'app-cart',
-  imports: [NgFor, NgIf, RouterLink, CurrencyPipe],
+  imports: [RouterLink, CurrencyPipe],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
