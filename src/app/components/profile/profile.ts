@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart';
 import { CommonModule} from '@angular/common';
@@ -12,24 +12,15 @@ import { userProfile } from '../../models/user';
   styleUrl: './profile.css',
 })
 export class ProfileComponent implements OnInit {
-  profileForm: FormGroup;
+  profileForm!: FormGroup;
   orderHistory: Order[] = [];
 
-  constructor(private fb: FormBuilder, private cartService: CartService) {
-    this.profileForm = this.fb.group({
-      fullName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-    });
-  }
+  private fb = inject(FormBuilder);
+  private cartService = inject(CartService);
 
   ngOnInit(): void {
-    const savedProfile = localStorage.getItem('userProfile');
-    if (savedProfile) {
-      this.profileForm.patchValue(JSON.parse(savedProfile));
-    }
-    this.orderHistory = this.loadOrderHistory();
+    this.initForm();
+    this.loadOrderHistory();
   }
 
   onSubmit(): void {
@@ -48,6 +39,20 @@ export class ProfileComponent implements OnInit {
       this.profileForm.patchValue(JSON.parse(savedProfile));
     } else {
       this.profileForm.reset();
+    }
+  }
+
+  private initForm(): void {
+    this.profileForm = this.fb.group({
+      fullName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+    });
+
+    const savedProfile = localStorage.getItem('userProfile');
+    if (savedProfile) {
+      this.profileForm.patchValue(JSON.parse(savedProfile));
     }
   }
 

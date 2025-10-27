@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { BehaviorSubject, filter } from 'rxjs';
 import { CartService } from './cart';
@@ -17,7 +17,10 @@ export class ProgressService {
   showOrderSuccessModal$ = this.showOrderSuccessModalSubject.asObservable();
   cartItemCount$ = this.cartItemCountSubject.asObservable();
 
-  constructor(private router: Router, private cartService: CartService) {
+  private router = inject(Router);
+  private cartService = inject(CartService);
+
+  constructor() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => this.updateProgressBar(event.url));

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { RouterLink } from '@angular/router';
@@ -21,7 +21,8 @@ export class CartComponent implements OnInit {
   userProfile: userProfile[] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private cartService: CartService, public imageService: ImageService) {}
+  private cartService = inject(CartService);
+  public imageService = inject(ImageService);
 
   ngOnInit(): void {
     const cartSub = this.cartService.getCartItems().subscribe(

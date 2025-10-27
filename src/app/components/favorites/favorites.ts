@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { FavoriteService } from '../../services/favorite';
 import { CartService } from '../../services/cart';
@@ -16,11 +16,9 @@ export class FavoritesComponent implements OnInit {
   favorites: Product[] = [];
   product: Product[] = [];
 
-  constructor(
-    private favoritesService: FavoriteService,
-    private cartService: CartService,
-    public imageService: ImageService
-  ) {}
+  private favoritesService = inject(FavoriteService);
+  private cartService = inject(CartService);
+  public imageService = inject(ImageService);
 
   ngOnInit(): void {
     this.favorites = this.favoritesService.getFavorites();
