@@ -12,8 +12,6 @@ export class ProductService {
 
   private http = inject(HttpClient)
 
-  constructor() {}
-
   private getProductsData(): Observable<ProductsResponse> {
     if (!this.cachedProducts$) {
       this.cachedProducts$ = this.http
