@@ -1,14 +1,17 @@
 <div class="cart-container">
   <h2>Корзина</h2>
 
-  <div *ngIf="cartItems.length === 0" class="empty-cart">
+  @if (cartItems.length === 0) {
+  <div class="empty-cart">
     <p>Ваша корзина пуста</p>
     <a routerLink="/home">Вернуться к покупкам</a>
   </div>
-
-  <div *ngIf="cartItems.length > 0" class="cart-content">
+  } 
+  @if (cartItems.length > 0) {
+  <div class="cart-content">
     <div class="cart-items">
-      <div *ngFor="let item of cartItems" class="cart-item">
+      @for (item of cartItems; track item.product.id) {
+      <div class="cart-item">
         <div class="item-image">
           <img
             [src]="imageService.getProductImagePath(item.product)"
@@ -19,7 +22,9 @@
 
         <div class="item-details">
           <h3>{{ item.product.name }}</h3>
-          <p *ngIf="item.selectedSize" class="product-size">Размер: {{ item.selectedSize }}</p>
+          @if (item.selectedSize) {
+          <p class="product-size">Размер: {{ item.selectedSize }}</p>
+          }
           <p class="product-price">{{ item.product.price * item.quantity | currency : 'Р' }}</p>
         </div>
 
@@ -31,6 +36,7 @@
 
         <button class="remove-btn" (click)="onRemoveItem(item)">Удалить</button>
       </div>
+      }
     </div>
 
     <div class="cart-summary">
@@ -38,4 +44,5 @@
       <button class="checkout-btn" (click)="onCheckout()">Оформить заказ</button>
     </div>
   </div>
+  }
 </div>

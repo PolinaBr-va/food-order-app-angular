@@ -1,4 +1,5 @@
-<div *ngIf="product" class="product-detail">
+@if (product) {
+<div class="product-detail">
   <div class="product-image">
     <img [src]="imageService.getProductImagePath(product)" [alt]="product.name" />
   </div>
@@ -8,14 +9,19 @@
     <p class="product-description">{{ product.description }}</p>
     <p class="product-price">{{ product.price }} рублей</p>
 
-    <div *ngIf="product.sizes && product.sizes.length" class="size-selector">
+    @if (product.sizes && product.sizes.length) {
+    <div class="size-selector">
       <label>Размер:</label>
       <select [(ngModel)]="selectedSize">
-        <option *ngFor="let size of product.sizes" [value]="size">
+        @for (size of product.sizes; track size) {
+        <option [value]="size">
           {{ size }}
         </option>
+        }
       </select>
     </div>
+    }
+
     <div class="quantity-selector">
       <label>Количество:</label>
       <div class="quantity-controls">
@@ -33,24 +39,29 @@
     </div>
 
     <div class="product-detail">
-      <div class="detail-item" *ngIf="product.calories">
+      @if (product.calories) {
+      <div class="detail-item">
         <span class="label">Калории:</span>
         <span class="value">{{ product.calories }} ккал</span>
       </div>
-
-      <div class="detail-item" *ngIf="product.cookingTime">
+      } @if (product.cookingTime) {
+      <div class="detail-item">
         <span class="label">Время приготовления:</span>
         <span class="value">{{ product.cookingTime }}</span>
       </div>
+      }
     </div>
   </div>
 </div>
-
-<div *ngIf="!product && !isLoading" class="not-found">
+} 
+@if (!product && !isLoading) {
+<div class="not-found">
   <p>Продукт не найден</p>
   <a routerLink="/home">Вернуться на главную</a>
 </div>
-
-<div *ngIf="isLoading" class="loading">
+} 
+@if (isLoading) {
+<div class="loading">
   <p>Загрузка информации о продукте...</p>
 </div>
+}

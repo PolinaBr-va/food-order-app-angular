@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product';
 import { CartService } from '../../services/cart';
-import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FavoriteService } from '../../services/favorite';
 import { Subscription } from 'rxjs';
@@ -12,7 +11,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [NgIf, NgFor, FormsModule, RouterLink, CommonModule],
+  imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.css',
 })
