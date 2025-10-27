@@ -6,7 +6,8 @@
     <p>Ваша корзина пуста</p>
     <a routerLink="/home">Вернуться к покупкам</a>
   </div>
-  } @if (cartItems.length > 0) {
+  } 
+  @if (cartItems.length > 0) {
   <div class="cart-content">
     <div class="cart-items">
       @for (item of cartItems; track item.product.id) {

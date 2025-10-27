@@ -53,12 +53,14 @@
     </div>
   </div>
 </div>
-} @if (!product && !isLoading) {
+} 
+@if (!product && !isLoading) {
 <div class="not-found">
   <p>Продукт не найден</p>
   <a routerLink="/home">Вернуться на главную</a>
 </div>
-} @if (isLoading) {
+} 
+@if (isLoading) {
 <div class="loading">
   <p>Загрузка информации о продукте...</p>
 </div>
