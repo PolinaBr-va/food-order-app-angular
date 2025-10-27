@@ -12,29 +12,31 @@ import { userProfile } from '../../models/user';
   styleUrl: './profile.css',
 })
 export class ProfileComponent implements OnInit {
-  profileForm: FormGroup;
+  profileForm!: FormGroup;
   orderHistory: Order[] = [];
 
   private fb = inject(FormBuilder);
   private cartService = inject(CartService);
-  
-  constructor() {
+
+  ngOnInit(): void {
+    this.initForm();
+    this.loadOrderHistory();
+  }
+
+  private initForm(): void {
     this.profileForm = this.fb.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
       address: ['', [Validators.required]],
     });
-  }
 
-  ngOnInit(): void {
     const savedProfile = localStorage.getItem('userProfile');
     if (savedProfile) {
       this.profileForm.patchValue(JSON.parse(savedProfile));
     }
-    this.orderHistory = this.loadOrderHistory();
   }
-
+ 
   onSubmit(): void {
     if (this.profileForm.valid) {
       const formData = this.profileForm.value;
