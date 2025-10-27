@@ -23,20 +23,6 @@ export class ProfileComponent implements OnInit {
     this.loadOrderHistory();
   }
 
-  private initForm(): void {
-    this.profileForm = this.fb.group({
-      fullName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-    });
-
-    const savedProfile = localStorage.getItem('userProfile');
-    if (savedProfile) {
-      this.profileForm.patchValue(JSON.parse(savedProfile));
-    }
-  }
-
   onSubmit(): void {
     if (this.profileForm.valid) {
       const formData = this.profileForm.value;
@@ -53,6 +39,20 @@ export class ProfileComponent implements OnInit {
       this.profileForm.patchValue(JSON.parse(savedProfile));
     } else {
       this.profileForm.reset();
+    }
+  }
+
+  private initForm(): void {
+    this.profileForm = this.fb.group({
+      fullName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+    });
+
+    const savedProfile = localStorage.getItem('userProfile');
+    if (savedProfile) {
+      this.profileForm.patchValue(JSON.parse(savedProfile));
     }
   }
 
