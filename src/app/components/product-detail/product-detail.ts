@@ -31,8 +31,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   private favoriteService = inject(FavoriteService);
   public imageService = inject(ImageService);
 
-  constructor() {}
-
   ngOnInit(): void {
     const productId = Number(this.route.snapshot.paramMap.get('id'));
 

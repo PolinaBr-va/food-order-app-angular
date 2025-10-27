@@ -24,8 +24,6 @@ export class CartComponent implements OnInit {
   private cartService = inject(CartService);
   public imageService = inject(ImageService);
 
-  constructor() {}
-
   ngOnInit(): void {
     const cartSub = this.cartService.getCartItems().subscribe(
       (items) => {

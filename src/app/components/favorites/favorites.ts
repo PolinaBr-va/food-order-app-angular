@@ -20,8 +20,6 @@ export class FavoritesComponent implements OnInit {
   private cartService = inject(CartService);
   public imageService = inject(ImageService);
 
-  constructor() {}
-
   ngOnInit(): void {
     this.favorites = this.favoritesService.getFavorites();
   }

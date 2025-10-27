@@ -14,8 +14,6 @@ export class OrderSuccessModalComponent {
   orderId: string = '';
   totalAmount: number = 0;
   
-  constructor() {}
-
   ngOnInit(): void {
     this.getLastOrder();
   }

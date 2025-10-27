@@ -31,8 +31,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   private cartService = inject(CartService);
   public imageService = inject(ImageService);
 
-  constructor() {}
-
   ngOnInit() {
     const productsSub = this.productService.getProducts().subscribe(
       (products) => {
