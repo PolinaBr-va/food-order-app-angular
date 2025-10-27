@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
       this.profileForm.patchValue(JSON.parse(savedProfile));
     }
   }
- 
+
   onSubmit(): void {
     if (this.profileForm.valid) {
       const formData = this.profileForm.value;
