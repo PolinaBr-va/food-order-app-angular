@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule } from '@angul
 import { CommonModule, NgIf } from '@angular/common';
 import { OrderSuccessModalComponent } from './components/order-success-modal/order-success-modal';
 import { ProgressService } from './services/progress';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { ProgressService } from './services/progress';
     CommonModule,
     NgIf,
     OrderSuccessModalComponent,
+    
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
@@ -24,7 +26,16 @@ export class App implements OnInit {
   showOrderSuccesModal = false;
   cartItemCount = 0;
 
-  constructor(private progressService: ProgressService) {}
+  constructor(private progressService: ProgressService, private swUpdate: SwUpdate) {
+    if (swUpdate.isEnabled) {
+      swUpdate.versionUpdates.subscribe(() => {
+        if (confirm('Доступна новая версия приложения. Перезагрузить?')) {
+          window.location.reload();
+        }
+      });
+    }
+  }
+  
 
   ngOnInit() {
     this.progressService.currentStep$.subscribe((step) => (this.currentStep = step));
