@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Lato-Black';
+  src: url('../src/assets/fonts/Lato-Black.ttf') format('ttf');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

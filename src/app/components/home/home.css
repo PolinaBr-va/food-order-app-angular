@@ -15,6 +15,8 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  font-family: 'Lato-Black', sans-serif;
+  font-weight: 900;
 }
 
 .search-bar input:focus {
@@ -38,6 +40,8 @@
   border-radius: 20px;
   transition: all 0.3s ease;
   font-size: 15px;
+  font-family: 'Lato-Black', sans-serif;
+  font-weight: 900;
 }
 
 .categories button:hover {
@@ -150,6 +154,8 @@
   align-items: center;
   margin-top: 15px;
   gap: 5px;
+  font-family: 'Lato-Black', sans-serif;
+  font-weight: 900;
 }
 
 .product-actions a {
