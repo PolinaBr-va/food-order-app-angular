@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-product-detail',
   imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './product-detail.html',
-  styleUrl: './product-detail.css',
+  styleUrl: './product-detail.scss',
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product | null = null;

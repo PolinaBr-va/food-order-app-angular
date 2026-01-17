@@ -1,0 +1,151 @@
+@use '../../styles/variables.scss' as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  @include flex-2center;
+  padding: 20px;
+  background-color: $black;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
+
+  .modal-content {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    background: $white;
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 40px;
+      width: 40px;
+      height: 40px;
+      @include flex-2center;
+      color: $deep-gray;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $black;
+      }
+
+      .material-icons {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+
+    .success-icon {
+      margin-bottom: 20px;
+      color: $green;
+      font-size: 64px;
+      animation: scaleIn 0.5s ease;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
+      font-weight: 700;
+      color: $brown-grey;
+    }
+
+    .success-message {
+      margin: 0 0 24px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: $deep-gray;
+      padding: 0 10px;
+    }
+
+    .order-details {
+      padding: 24px;
+      margin-bottom: 24px;
+      text-align: left;
+      border-radius: 12px;
+      background: $ligth-lilac;
+      border: 1px solid $light-grey;
+
+      .detail-item {
+        @include flex-center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+
+        &:last-child {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+
+        .label {
+          color: $deep-gray;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .value {
+          font-weight: 600;
+          color: $brown-grey;
+          font-size: 16px;
+        }
+      }
+    }
+    .modal-actions {
+      @include flex-column;
+      gap: 12px;
+
+      .track-order-btn,
+      .home-page-btn {
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        text-align: center;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        @include transition-all;
+      }
+
+      .track-order-btn {
+        color: $white;
+        background: $lilac;
+        border: 2px solid $lilac;
+
+        &:hover {
+          background: $violet;
+          border-color: $violet;
+          @include transform-tr-2;
+          box-shadow: 0 4px 12px rgba($lilac, 0.3);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      .home-page-btn {
+        color: $brown-grey;
+        background: $white;
+        border: 2px solid $light-grey;
+
+        &:hover {
+          background: $ligth-lilac;
+          border-color: $lilac;
+          color: $lilac;
+          @include transform-tr-2;
+        }
+      }
+    }
+  }
+}

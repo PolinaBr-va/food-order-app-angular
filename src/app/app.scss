@@ -1,0 +1,188 @@
+@use './styles/variables.scss' as *;
+
+.app-container {
+  min-height: 100vh;
+  @include flex-column;
+  background-color: $white;
+
+  .progress-container {
+    padding: 16px 0;
+    background-color: $white;
+    border-bottom: 1px solid $light-grey;
+    box-shadow: 0 2px 4px $black;
+
+    .progress-bar {
+      @include flex-2center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 16px;
+
+      .progress-step {
+        position: relative;
+        @include flex-column;
+        align-items: center;
+        flex: 1;
+        min-width: 120px;
+
+        &:not(:last-child):after {
+          content: '';
+          position: absolute;
+          top: 15px;
+          left: 60%;
+          width: 80%;
+          height: 2px;
+          background-color: $light-grey;
+          z-index: 1;
+        }
+
+        &.completed:after {
+          background-color: $lilac;
+        }
+
+        .step-number {
+          position: relative;
+          z-index: 2;
+          @include flex-2center;
+          width: 32px;
+          height: 32px;
+          margin-bottom: 8px;
+          font-size: 20px;
+          font-weight: 600;
+          color: $warm-gray;
+          border-radius: 50%;
+          background-color: $white;
+          @include transition-all;
+        }
+
+        .step-label {
+          text-align: center;
+          font-size: 12px;
+          color: $warm-gray;
+          font-weight: 500;
+          @include transition-all;
+        }
+
+        &.active .step-number {
+          background-color: $lilac;
+          color: $white;
+          box-shadow: 0 0 0 4px $blue-grey;
+        }
+
+        &.completed .step-number {
+          background-color: $blue;
+          color: $white;
+        }
+
+        &.active .step-label {
+          color: $deep-blue;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: $white;
+    padding: 0;
+    // @include black-shadow;
+    box-shadow: 0 2px 8px $light-grey;
+
+    .nav-container {
+      @include flex-center;
+      justify-content: space-between;
+      max-width: 1200px;
+      height: 70px;
+      margin: 0 auto;
+      padding: 0 16px;
+
+      .nav-logo {
+        @include flex-center;
+        gap: 12px;
+        color: $blue-grey;
+        font-size: 30px;
+        font-weight: 700;
+        text-decoration: none;
+        @include transition-color;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        .nav-item {
+          position: relative;
+
+          .nav-link {
+            position: relative;
+            @include flex-center;
+            gap: 8px;
+            padding: 12px 16px;
+            color: $warm-gray;
+            font-size: 18px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 6px;
+            @include transition-all;
+
+            &.material-icons {
+              font-size: 20px;
+              color: $azure-grey;
+              @include transition-color;
+            }
+
+            &:hover {
+              background-color: $white;
+              color: $deep-gray;
+            }
+
+            &:hover .material-icons {
+              color: $azure-grey;
+            }
+
+            &.active {
+              background-color: $lilac;
+              color: $white;
+            }
+
+            &.active .material-icons {
+              color: $white;
+            }
+
+            .cart-badge {
+              position: absolute;
+              top: 6px;
+              right: 6px;
+              @include flex-2center;
+              width: 18px;
+              height: 18px;
+              font-size: 10px;
+              font-weight: 700;
+              line-height: 1;
+              color: $white;
+              border-radius: 50%;
+              background-color: $lilac;
+            }
+
+            &.active .cart-badge {
+              background-color: $white;
+              color: $blue;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .main-content {
+    min-height: calc(100vh - 200px);
+    flex: 1;
+    padding: 24px 0;
+    background-color: $white;
+  }
+}

@@ -1,0 +1,14 @@
+@use './variables.scss';
+
+body {
+  margin: 0;
+  background-color: #1d2f30;
+}
+
+@font-face {
+  font-family: 'Lato-Black';
+  src: url('../../assets/fonts/Lato-Black.ttf') format('ttf');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-home',
   imports: [RouterLink, FormsModule, CommonModule],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
   allProducts: Product[] = [];

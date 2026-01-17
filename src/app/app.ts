@@ -18,7 +18,7 @@ import { SwUpdate } from '@angular/service-worker';
     
   ],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.scss',
 })
 export class App implements OnInit {
   currentStep = 1;
