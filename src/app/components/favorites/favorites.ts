@@ -10,7 +10,7 @@ import { ImageService } from '../../services/image';
   selector: 'app-favorites',
   imports: [CommonModule, RouterLink],
   templateUrl: './favorites.html',
-  styleUrl: './favorites.css',
+  styleUrl: './favorites.scss',
 })
 export class FavoritesComponent implements OnInit {
   favorites: Product[] = [];

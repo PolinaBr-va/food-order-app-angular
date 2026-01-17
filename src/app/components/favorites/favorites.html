@@ -16,7 +16,7 @@
         <p class="description">{{ product.description | slice : 0 : 80 }}...</p>
         <p class="price">{{ product.price }} рублей</p>
         <div class="item-actions">
-          <a [routerLink]="['/product', product.id]">Показать детали</a>
+          <a [routerLink]="['/product', product.id]" class="view-details">Показать детали</a>
           <button class="add-to-cart" (click)="addToCart(product)">Добавить в корзину</button>
         </div>
       </div>

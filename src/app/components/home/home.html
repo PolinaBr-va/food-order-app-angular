@@ -15,7 +15,8 @@
     <button (click)="selectCategory(category)" [class.active]="selectedCategory === category">
       {{ category }}
     </button>
-    <button (click)="clearFilters()">Очистить фильтр</button>
+    } @if (selectedCategory) {
+    <button class="clear-filter-btn" (click)="clearFilters()">Очистить фильтр</button>
     }
   </div>
 
@@ -41,8 +42,8 @@
         <p class="product-description">{{ product.description }}</p>
         <p class="product-price">Цена: {{ product.price }} рублей</p>
         <div class="product-actions">
-          <a [routerLink]="['/product', product.id]">Показать детали</a>
-          <button (click)="addToCart(product)">В корзину</button>
+          <a [routerLink]="['/product', product.id]">Подробнее</a>
+          <button (click)="addToCart(product)" class="add-card">В корзину</button>
         </div>
       </div>
     </div>

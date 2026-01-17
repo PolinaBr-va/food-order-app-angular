@@ -1,0 +1,66 @@
+// colors
+$white: #fff;
+$black: #000;
+$violet: #51396d;
+$lilac: #815bad;
+$ligth-lilac: #e9e1f3;
+$deep-blue: #0a223a;
+$blue: #2e72c0;
+$blue-grey: #2c3e50;
+$light-blue: #458ba9;
+$deep-gray: #495057;
+$brown-grey: #333;
+$warm-gray: #6c757d;
+$azure-grey: #7f8c8d;
+$light-grey: #ddd;
+$orange: #d87a5d;
+
+$red: #dc3545;
+$deep-red: #c82333;
+$green: #4caf50;
+
+// fonts
+$font-lato: 'Lato-Black';
+
+// mixins
+@mixin flex-2center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center-betw {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin transition-all {
+  transition: all 0.3s ease;
+}
+
+@mixin transition-color {
+  transition: color 0.3s ease;
+}
+
+@mixin transform-tr-2 {
+  transform: translateY(-2px);
+}
+
+@mixin transform-tr-1 {
+  transform: translateY(-1px);
+}
+
+@mixin black-shadow {
+  box-shadow: 0 2px 8px $black;
+}

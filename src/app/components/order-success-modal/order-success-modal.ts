@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-order-success-modal',
   imports: [RouterLink, CommonModule],
   templateUrl: './order-success-modal.html',
-  styleUrl: './order-success-modal.css',
+  styleUrl: './order-success-modal.scss',
 })
 export class OrderSuccessModalComponent {
   @Output() close = new EventEmitter<void>();

@@ -13,7 +13,7 @@ import { userProfile } from '../../models/user';
   selector: 'app-cart',
   imports: [RouterLink, CurrencyPipe],
   templateUrl: './cart.html',
-  styleUrl: './cart.css',
+  styleUrl: './cart.scss',
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];

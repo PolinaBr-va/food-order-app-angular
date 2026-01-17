@@ -9,7 +9,7 @@ import { userProfile } from '../../models/user';
   selector: 'app-profile',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './profile.html',
-  styleUrl: './profile.css',
+  styleUrl: './profile.scss',
 })
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
